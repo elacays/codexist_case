@@ -1,10 +1,9 @@
-import BookCard from "@/components/bookCard";
-import Header from "@/components/header";
+import FeaturedBooksContainer from "@/components/Book/Card/featuredBooksContainer";
 
 export default function Home() {
   return (
     <main className="flex  flex-col items-center ">
-      <BookCard />
+      <FeaturedBooksContainer />
     </main>
   );
 }

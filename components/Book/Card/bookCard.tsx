@@ -2,15 +2,15 @@
 export default function BookCard() {
   return (
     <div className="flex p-10 items-center justify-center">
-      <div className="relative flex w-full max-h-[16rem] max-w-[28rem] flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+      <div className="relative flex w-full max-h-[16rem] max-w-[28rem] min-w-[25rem] flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
         <div className="relative m-0 w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
           <img
             src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
             alt="image"
             className="h-full w-full object-cover"
           />
-          <div className="absolute top-4 left-4 bg-white rounded-xl px-1">
-            <p className="flex items-center gap-0.5 font-sans text-base font-semibold text-black leading-relaxed text-blue-gray-900 antialiased">
+          <div className="absolute top-2 left-2 bg-white rounded-xl px-1">
+            <p className="flex items-center gap-0.5 font-sans text-sm font-semibold text-black leading-relaxed text-blue-gray-900 antialiased">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -35,15 +35,12 @@ export default function BookCard() {
           <h4 className="mb-2 block font-sans text-base font-semibold leading-snug tracking-normal  text-blue-gray-900 antialiased">
             AND THE PHILOSOPHER'S STONE
           </h4>
-          <p className="mb-4 block font-sans text-sm font-normal leading-relaxed text-gray-700 antialiased">
-            Uğur hikmet KÖSE
-          </p>
           <div className="flex flex-row justify-between align-middle">
             <div className="flex flex-row justify-between align-middle">
-              <p className="cursor-pointer group  transition-all rounded-full p-1 hover:bg-pink-500/40 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+              <p className="cursor-pointer group  transition-all rounded-full -ms-1.5 hover:bg-pink-500/40 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 "
+                  className="h-6 w-6 m-1.5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="black"
@@ -56,7 +53,7 @@ export default function BookCard() {
                   />
                 </svg>
               </p>
-              <p className="my-auto ms-1"> 9.99$</p>
+              <p className="my-auto text-black text-sm font-medium"> 9.99$</p>
             </div>
 
             <a className="inline-block my-auto" href="#">
