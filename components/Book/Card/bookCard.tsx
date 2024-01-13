@@ -1,8 +1,24 @@
 "use client";
-
+import { addToCart } from "@/lib/features/cartSlice";
 import Link from "next/link";
-
+import { useDispatch } from "react-redux";
+import { ToastContainer, toast,Bounce } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 export default function BookCard() {
+  const dispatch = useDispatch();
+  const addToCartHandler = () => {
+    dispatch(addToCart({id:1,name:"",quantity:1,price:33}))
+    toast('Successfully added to cart.', {
+      position: "top-right",
+      autoClose: 1500,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+      progressStyle: { backgroundColor: "#FF008E" },
+      transition: Bounce,
+      });
+      
+  }
   return (
     <div className="flex p-10 items-center justify-center">
       <div className="relative flex w-full max-h-[16rem] max-w-[28rem] min-w-[25rem] flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
@@ -40,7 +56,9 @@ export default function BookCard() {
           </h4>
           <div className="flex flex-row justify-between align-middle">
             <div className="flex flex-row justify-between align-middle">
+            <button onClick={addToCartHandler}>
               <p className="cursor-pointer group  transition-all rounded-full -ms-1.5 hover:bg-pink-500/40 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 m-1.5"
@@ -55,7 +73,9 @@ export default function BookCard() {
                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
+
               </p>
+              </button>
               <p className="my-auto text-black text-sm font-medium"> 9.99$</p>
             </div>
             <Link href={"/bookdetail"}>
@@ -84,30 +104,7 @@ export default function BookCard() {
             </span>
             </Link>
           </div>
-
-          {/* <a className="inline-block" href="#">
-          <button
-            className="flex select-none items-center gap-2 rounded-lg py-1 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-pink-500 transition-all hover:bg-pink-500/10 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-            type="button"
-          >
-            Learn More
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              aria-hidden="true"
-              className="h-4 w-4"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-              ></path>
-            </svg>
-          </button>
-        </a> */}
+      <ToastContainer/>
         </div>
       </div>
     </div>
