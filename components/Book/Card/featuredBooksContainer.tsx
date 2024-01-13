@@ -11,6 +11,9 @@ export default function FeaturedBooksContainer() {
       <BookCard />
       <BookCard />
       <BookCard />
+      <BookCard />
+      <BookCard />
+      <BookCard />
     </div>
   );
 }

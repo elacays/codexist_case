@@ -1,4 +1,4 @@
-import FeaturedBooksContainer from "@/components/Book/Card/featuredBooksContainer";
+import FeaturedBooksContainer from "@/components/book/card/featuredBooksContainer";
 
 export default function Home() {
   return (

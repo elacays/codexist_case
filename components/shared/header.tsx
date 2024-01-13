@@ -1,4 +1,7 @@
 "use client";
+
+import Link from "next/link";
+
 export default function Header() {
   return (
     <section className="relative mx-auto">
@@ -9,9 +12,11 @@ export default function Header() {
           </a>
           <ul className="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
             <li>
-              <a className="hover:text-gray-200" href="#">
+              <Link href={"/"}>
+              <span className="hover:text-gray-200" >
                 Home
-              </a>
+              </span>
+              </Link>
             </li>
             <li>
               <a className="hover:text-gray-200" href="#">
@@ -69,7 +74,8 @@ export default function Header() {
                 />
               </svg>
             </a>
-            <a className="flex items-center hover:text-gray-200" href="#">
+            <Link href={"/shoppingcart"} >
+            <span className="flex items-center hover:text-gray-200" >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -88,7 +94,7 @@ export default function Header() {
                 <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
               </span>
-            </a>
+            </span></Link>
             <a className="flex items-center hover:text-gray-200" href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

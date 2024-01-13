@@ -1,4 +1,7 @@
 "use client";
+
+import Link from "next/link";
+
 export default function BookCard() {
   return (
     <div className="flex p-10 items-center justify-center">
@@ -33,7 +36,7 @@ export default function BookCard() {
             HARRY POTTER
           </h6>
           <h4 className="mb-2 block font-sans text-base font-semibold leading-snug tracking-normal  text-blue-gray-900 antialiased">
-            AND THE PHILOSOPHER'S STONE
+            {"AND THE PHILOSOPHER'S STONE"}
           </h4>
           <div className="flex flex-row justify-between align-middle">
             <div className="flex flex-row justify-between align-middle">
@@ -55,8 +58,8 @@ export default function BookCard() {
               </p>
               <p className="my-auto text-black text-sm font-medium"> 9.99$</p>
             </div>
-
-            <a className="inline-block my-auto" href="#">
+            <Link href={"/bookdetail"}>
+            <span className="inline-block my-auto" >
               <button
                 className="flex select-none items-center ms-auto gap-2 rounded-lg py-1 px-2 text-center font-sans text-xs font-bold uppercase  transition-all hover:bg-pink-500/40 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 type="button"
@@ -78,7 +81,8 @@ export default function BookCard() {
                   ></path>
                 </svg>
               </button>
-            </a>
+            </span>
+            </Link>
           </div>
 
           {/* <a className="inline-block" href="#">

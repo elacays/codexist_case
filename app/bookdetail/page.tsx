@@ -1,4 +1,4 @@
-import BookDetails from "@/components/Book/bookDetail";
+import BookDetails from "@/components/book/bookDetail";
 
 export default function BookDetail() {
   return (
