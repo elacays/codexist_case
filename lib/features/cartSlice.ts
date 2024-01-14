@@ -6,10 +6,10 @@ type CartState ={
 }
 
 type Item ={
-    id: number;
-    name: string;
+    id: string;
     price: number;
     quantity: number;
+    currencyCode: string;
 }
 
 const cartSlice = createSlice({
@@ -21,10 +21,10 @@ const cartSlice = createSlice({
         addToCart(state, action: PayloadAction<Item>) {
             state.items.push(action.payload);
         },
-        removeFromCart(state, action: PayloadAction<{ id: number }>) {
+        removeFromCart(state, action: PayloadAction<{ id: string }>) {
             state.items = state.items.filter((item) => item.id !== action.payload.id);
         },
-        addQuantity(state, action: PayloadAction<{ id: number }>) {
+        addQuantity(state, action: PayloadAction<{ id: string }>) {
             state.items = state.items.map((item) => {
                 if (item.id === action.payload.id) {
                     return {
@@ -35,7 +35,7 @@ const cartSlice = createSlice({
                 return item;
             });
         },
-        reduceQuantity(state, action: PayloadAction<{ id: number }>) {
+        reduceQuantity(state, action: PayloadAction<{ id: string }>) {
             state.items = state.items.map((item) => {
                 if (item.id === action.payload.id && item.quantity > 1) {
                     return {
@@ -45,7 +45,8 @@ const cartSlice = createSlice({
                 }
                 return item;
             });
-        }
+        },
+
     },
 });
 

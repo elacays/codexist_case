@@ -30,7 +30,7 @@ export default function BookCard({book}:IBook) {
     });
   }, []);
   const addToCartHandler = () => {
-    dispatch(addToCart({id:1,name:"",quantity:1,price:33}))
+    dispatch(addToCart({  id: book.id, quantity: 1, price: bookData?.saleInfo?.retailPrice?.amount,currencyCode:bookData?.saleInfo?.retailPrice?.currencyCode}))
     toast('Successfully added to cart.', {
       position: "top-right",
       autoClose: 1500,
