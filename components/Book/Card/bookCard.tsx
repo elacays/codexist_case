@@ -1,11 +1,34 @@
 "use client";
 import { addToCart } from "@/lib/features/cartSlice";
+import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast,Bounce } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-export default function BookCard() {
+interface IBook{
+  book:{
+    id: string;
+    volumeInfo: {
+        title: string;
+        imageLinks: {
+            thumbnail: string;
+        }
+    };
+    selfLink: string;
+
+  }
+}
+export default function BookCard({book}:IBook) {
   const dispatch = useDispatch();
+  const [bookData, setBookData] = useState<any>();
+  useEffect(() => {
+    axios.get(`${process.env.NEXT_PUBLIC_SINGLE_BOOK_API}${book.id}?&key=${process.env.NEXT_PUBLIC_API_KEY}`).then((res) => {
+      console.log(res.data);
+      setBookData(res.data);
+    });
+  }, []);
   const addToCartHandler = () => {
     dispatch(addToCart({id:1,name:"",quantity:1,price:33}))
     toast('Successfully added to cart.', {
@@ -21,13 +44,9 @@ export default function BookCard() {
   }
   return (
     <div className="flex p-10 items-center justify-center">
-      <div className="relative flex w-full max-h-[16rem] max-w-[28rem] min-w-[25rem] flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+      <div className="relative flex w-full min-h-[12rem]  max-h-[12rem] max-w-[26rem] min-w-[26rem] flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
         <div className="relative m-0 w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
-          <img
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
-            alt="image"
-            className="h-full w-full object-cover"
-          />
+          <Image loader={()=>book?.volumeInfo?.imageLinks?.thumbnail} src={book?.volumeInfo?.imageLinks?.thumbnail} alt={book?.volumeInfo?.title} width={1000} height={1000}/>
           <div className="absolute top-2 left-2 bg-white rounded-xl px-1">
             <p className="flex items-center gap-0.5 font-sans text-sm font-semibold text-black leading-relaxed text-blue-gray-900 antialiased">
               <svg
@@ -43,69 +62,72 @@ export default function BookCard() {
                   clip-rule="evenodd"
                 ></path>
               </svg>
-              5.0
+              {bookData?.volumeInfo?.averageRating?(bookData?.volumeInfo?.averageRating).toFixed(1):"0"}
             </p>
           </div>
         </div>
-        <div className="p-4 w-full">
-          <h6 className="block font-sans text-lg font-bold uppercase leading-relaxed tracking-normal  antialiased">
-            HARRY POTTER
-          </h6>
-          <h4 className="mb-2 block font-sans text-base font-semibold leading-snug tracking-normal  text-blue-gray-900 antialiased">
-            {"AND THE PHILOSOPHER'S STONE"}
-          </h4>
-          <div className="flex flex-row justify-between align-middle">
-            <div className="flex flex-row justify-between align-middle">
-            <button onClick={addToCartHandler}>
-              <p className="cursor-pointer group  transition-all rounded-full -ms-1.5 hover:bg-pink-500/40 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 m-1.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="black"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-
-              </p>
-              </button>
-              <p className="my-auto text-black text-sm font-medium"> 9.99$</p>
-            </div>
-            <Link href={"/bookdetail"}>
-            <span className="inline-block my-auto" >
-              <button
-                className="flex select-none items-center ms-auto gap-2 rounded-lg py-1 px-2 text-center font-sans text-xs font-bold uppercase  transition-all hover:bg-pink-500/40 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                type="button"
-              >
-                Learn More
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  className="h-4 w-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                  ></path>
-                </svg>
-              </button>
-            </span>
-            </Link>
+        <div className="p-4 w-full h-auto flex flex-col justify-between">
+          <div>
+            <h6 className="block font-sans text-md leading-5 font-bold uppercase  tracking-normal  antialiased">
+              {book.volumeInfo.title}
+            </h6>
+            <h4 className="mb-2 mt-1.5 block font-sans text-base leading-5 font-semibold tracking-normal  text-blue-gray-900 antialiased">
+              {bookData?.volumeInfo?.subtitle}
+            </h4>
           </div>
-      <ToastContainer/>
+          <div className="flex flex-row justify-between align-bottom ">
+            <div className="flex flex-row justify-between align-middle">
+              <button onClick={addToCartHandler}>
+                <p className="cursor-pointer group  transition-all rounded-full -ms-1 p-1 hover:bg-pink-500/40 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-8 w-8 "
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="black"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
+                  </svg>
+                </p>
+              </button>
+              <p className="my-auto text-black text-sm font-medium"> {bookData?.saleInfo?.retailPrice?.amount} {bookData?.saleInfo?.retailPrice?.currencyCode==="TRY"&&"₺"}</p>
+            </div>
+            <div>
+              <Link href={"/bookdetail"}>
+                <span className="inline-block my-auto" >
+                  <button
+                    className="flex select-none items-center ms-auto gap-2 mt-2 rounded-lg py-1 px-2 text-center font-sans text-xs font-bold uppercase  transition-all hover:bg-pink-500/40 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    type="button"
+                  >
+                    Learn More
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="2"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                      className="h-4 w-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                      ></path>
+                    </svg>
+                  </button>
+                </span>
+              </Link>
+            </div>
+          </div>
+
         </div>
+        <ToastContainer/>
       </div>
     </div>
   );
