@@ -23,6 +23,7 @@ export default function BookCard({ book }: IBook) {
   const dispatch = useDispatch();
   const [bookData, setBookData] = useState<any>();
   useEffect(() => {
+    //carttan gelen id ile kitabı getir
     axios
       .get(
         `${process.env.NEXT_PUBLIC_SINGLE_BOOK_API}${book.id}?&key=${process.env.NEXT_PUBLIC_API_KEY}`
@@ -32,6 +33,7 @@ export default function BookCard({ book }: IBook) {
       });
   }, []);
   const addToCartHandler = () => {
+    //kitabı sepete'a ekle
     dispatch(
       addToCart({
         id: book.id,

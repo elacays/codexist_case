@@ -14,13 +14,14 @@ export default function SearchBar() {
   );
   const dispatch = useDispatch<AppDispatch>();
   const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // 👇 Arama kısmından gelen input değerini alıp apiye gönderiyoruz
     if (e.target.value.length > 1) {
       dispatch(fetchSearchBooks(e.target.value));
     }
   };
   const handleKeyDown = (event: any) => {
+    // 👇 Enter tuşuna basıldığında arama kısmından gelen input değerini alıp apiye gönderiyoruz sonrasında daha fazla sonuç için ana sayfaya yönlendiriyoruz
     if (event.key === "Enter") {
-      // 👇 Get input value
       dispatch(fetchBooks(event.target.value));
       router.replace("/");
     }

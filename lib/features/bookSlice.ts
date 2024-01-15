@@ -42,6 +42,7 @@ const bookSlice = createSlice({
             state.books = action.payload;
         },
     },
+    // Apiden get işlemi bittikten sonra state güncellenir.
     extraReducers:(builder)=> {
             builder.addCase(fetchBooks.fulfilled, (state, action) => {
                     state.isLoading = false;

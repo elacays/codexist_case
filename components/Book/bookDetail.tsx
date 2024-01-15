@@ -14,6 +14,7 @@ export default function BookDetails() {
   const dispatch = useDispatch();
   const [bookData, setBookData] = useState<any>();
   useEffect(() => {
+    //carttan gelen id ile kitabı getir
     axios
       .get(
         `${process.env.NEXT_PUBLIC_SINGLE_BOOK_API}${id}?&key=${process.env.NEXT_PUBLIC_API_KEY}`

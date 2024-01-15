@@ -18,23 +18,13 @@ export default function Header() {
     (state: RootState) => state.searchBook.searchBooks
   );
   const dispatch = useDispatch<AppDispatch>();
-  const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length > 1) {
-      dispatch(fetchSearchBooks(e.target.value));
-    }
-  };
-  const handleKeyDown = (event: any) => {
-    if (event.key === "Enter") {
-      // 👇 Get input value
-      dispatch(fetchBooks(event.target.value));
-      router.replace("/");
-    }
-  };
+
   const navbarHandler = () => {
     setNavbar(!navbar);
   };
 
   useEffect(() => {
+    //kullanıcı başka bir sayfaya gittiğinde navbarı kapat
     setNavbar(false);
   }, [path]);
 

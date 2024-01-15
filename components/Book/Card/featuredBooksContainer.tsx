@@ -8,6 +8,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 export default function FeaturedBooksContainer() {
   const bookItems = useSelector((state: RootState) => state.book);
   const loading = useSelector((state: RootState) => state.book.isLoading);
+  // 👇 Eğer kitaplar yükleniyorsa loading ekranını göster
   if (loading) return <LoadingScreen />;
   return (
     <div className="grid xl:grid-cols-3  lg:grid-cols-2 grid-cols-1 gap-x-8 gap-y-5 max-w-7xl my-12">
