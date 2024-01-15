@@ -31,8 +31,8 @@ export const fetchBooks = createAsyncThunk("fetchBooks", async (searchKeyword:st
     } catch (error) {
         console.log(error);
     }
-
 });
+
 
 const bookSlice = createSlice({
     name: 'book',

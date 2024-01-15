@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartSlice from "./features/cartSlice";
 import bookSlice from "./features/bookSlice";
+import searchBookSlice from "./features/searchBookSlice";
 export const store  = configureStore({
     reducer: {
         cart:cartSlice,
-        book: bookSlice
+        book: bookSlice,
+        searchBook: searchBookSlice,
     },
 })
 export type AppDispatch = typeof store.dispatch;
