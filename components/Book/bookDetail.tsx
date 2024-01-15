@@ -46,13 +46,14 @@ export default function BookDetails() {
     <div className=" text-black mt-12 bg-white rounded-lg shadow-2xl mb-6">
       <div className="container px-5  mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap justify-center align-middle">
-          <div className="w-1/2 h-1/4 mt-8">
+          <div className="w-1/2 h-1/5 my-8">
             <Image
               loader={() => bookData?.volumeInfo?.imageLinks?.thumbnail}
               src={bookData?.volumeInfo?.imageLinks?.thumbnail}
               alt={bookData?.volumeInfo?.title || "book"}
-              width={1000}
-              height={1000}
+              className="object-contain object-center rounded-lg shadow-sm max-h-[40rem] "
+              width={800}
+              height={500}
             />
           </div>
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 flex flex-col align-middle justify-center">

@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a name="readme-top"></a>
 
-## Getting Started
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-First, run the development server:
+### Project Book E-Commerce Website
+This project represents an e-commerce website focused on books. It operates by utilizing the Google Book API to fetch data. The key features of the project include:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Home Page
+On the home page, a list of available books is displayed. Each book is presented with its name, product rating, and other essential details.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Book Details
+You can explore detailed content for each book. This page includes general information about the book, its author, publisher, and more.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Search
+Using the search bar at the top, you can easily find the book you are looking for.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Cart Operations
+Add to Cart: You can add your favorite books to the cart.
+Cart Contents: View your cart to see a list of the books you've added.
+Edit Product Quantity: Adjust the quantity of each item in the cart.
+Total Price: See the total price of the books in your cart.
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
+* pnpm
+  ```sh
+  npm install -g pnpm
+  ```
+### Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Get your key after activating the API by following the instructions  [https://developers.google.com/books/docs/v1/using?hl=tr](https://developers.google.com/books/docs/v1/using?hl=tr)
+2. Clone the repo
+   ```sh
+   git clone https://github.com/elacays/codexist_case.git
+   ```
+3. Install NPM packages
+   ```sh
+   pnpm install
+   ```
+4. Create .env file in root directory
+5. Enter your API and required variables in `.env`
+   ```sh
+    NEXT_PUBLIC_API_KEY='Enter your key'
+    NEXT_PUBLIC_API=https://www.googleapis.com/books/v1/volumes?
+    NEXT_PUBLIC_SINGLE_BOOK_API=https://www.googleapis.com/books/v1/volumes/    
+   ```
+6. Run the project
+    ```sh
+   pnpm install
+   ```
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<!-- CONTACT -->
+## Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Uğur Hikmet Köse -  contact@ugurkose.dev
+
+Project Link: [https://github.com/elacays/codexist_case](https://github.com/elacays/codexist_case)
+
+
