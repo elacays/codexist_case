@@ -53,7 +53,7 @@ Total Price: See the total price of the books in your cart.
    ```
 6. Run the project
     ```sh
-   pnpm install
+   pnpm dev
    ```
 
 
