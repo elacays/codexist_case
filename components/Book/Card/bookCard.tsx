@@ -95,7 +95,13 @@ export default function BookCard({ book }: IBook) {
           </div>
           <div className="flex flex-row justify-between align-bottom ">
             <div className="flex flex-row justify-between align-middle mt-1">
-              <button onClick={addToCartHandler}>
+              <button
+                onClick={() =>
+                  bookData?.saleInfo?.retailPrice?.amount
+                    ? addToCartHandler()
+                    : ""
+                }
+              >
                 {bookData?.saleInfo?.retailPrice?.amount ? (
                   <p className="cursor-pointer group  transition-all rounded-full -ms-1 p-1 hover:bg-pink-500/40 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                     <svg

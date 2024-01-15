@@ -119,7 +119,7 @@ export default function BookDetails() {
                   bookData?.saleInfo?.retailPrice?.amount ? false : true
                 }
               >
-                <a className=" flex items-center" href="#">
+                <a className=" flex items-center">
                   {bookData?.saleInfo?.retailPrice?.amount ? (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
