@@ -16,17 +16,17 @@ interface Book {
 
 interface BookState {
     books: Book[];
-    isLoading: boolean; // Add the 'isLoading' property
+    isLoading: boolean; 
 }
 
 const initialState: BookState = {
     books: [],
-    isLoading: false, // Set the initial value of 'isLoading'
+    isLoading: true,
 };
 
-export const fetchBooks = createAsyncThunk("fetchBooks", async () => {
+export const fetchBooks = createAsyncThunk("fetchBooks", async (searchKeyword:string|undefined="child") => {
     try {
-        const result = await axios.get(`${process.env.NEXT_PUBLIC_API}q=The+Google+Story&key=${process.env.NEXT_PUBLIC_API_KEY}`);
+        const result = await axios.get(`${process.env.NEXT_PUBLIC_API}q=${searchKeyword}&maxResults=9&key=${process.env.NEXT_PUBLIC_API_KEY}`);
         return result.data.items;
     } catch (error) {
         console.log(error);

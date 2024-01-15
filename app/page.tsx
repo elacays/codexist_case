@@ -11,7 +11,7 @@ export default function Home() {
     dispatch(fetchBooks());
   }, []);
   return (
-    <main className="flex  flex-col items-center ">
+    <main className="flex flex-col items-center h-full w-full relative">
       <FeaturedBooksContainer />
     </main>
 

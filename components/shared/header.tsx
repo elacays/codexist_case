@@ -1,13 +1,17 @@
 "use client";
 
-import { RootState } from "@/lib/store";
+import { fetchBooks } from "@/lib/features/bookSlice";
+import { AppDispatch, RootState } from "@/lib/store";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Header() {
   const cartItems = useSelector((state: RootState) => state.cart.items); 
+  const dispatch = useDispatch<AppDispatch>();
+  const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(fetchBooks(e.target.value));}
   return (
-    <section className="relative mx-auto">
+    <section className="relative mx-auto z-50">
       <nav className="flex justify-between bg-gray-900 text-white w-screen">
         <div className="px-5 xl:px-12 py-6 flex w-full items-center">
           <a className="text-3xl font-bold font-heading" href="#">
@@ -58,7 +62,8 @@ export default function Header() {
                 type="text"
                 name="search"
                 id="search"
-                placeholder="Search..."
+                placeholder="Search the book..."
+                onChange={searchHandler}
               />
             </div>
             <a className="hover:text-gray-200" href="#">

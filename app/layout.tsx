@@ -5,6 +5,7 @@ import Header from "@/components/shared/header";
 import StoreProvider from "@/app/StoreProvider";
 import { Provider } from "react-redux";
 import {store} from "@/lib/store";
+import { ToastContainer } from "react-toastify";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,12 +22,13 @@ export default function RootLayout({
 }) {
   return (
 
-    <html lang="en">
+    <html lang="en" >
       <body className={inter.className}>
       <StoreProvider >
         <Header />
+        <ToastContainer/>
         {children}
-        </StoreProvider>
+      </StoreProvider>
       </body>
     </html>
 

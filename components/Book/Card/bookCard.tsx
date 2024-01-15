@@ -25,7 +25,6 @@ export default function BookCard({book}:IBook) {
   const [bookData, setBookData] = useState<any>();
   useEffect(() => {
     axios.get(`${process.env.NEXT_PUBLIC_SINGLE_BOOK_API}${book.id}?&key=${process.env.NEXT_PUBLIC_API_KEY}`).then((res) => {
-      console.log(res.data);
       setBookData(res.data);
     });
   }, []);
@@ -43,7 +42,7 @@ export default function BookCard({book}:IBook) {
       
   }
   return (
-    <div className="flex p-10 items-center justify-center">
+    <div className="flex items-center justify-center">
       <div className="relative flex w-full min-h-[12rem]  max-h-[12rem] max-w-[26rem] min-w-[26rem] flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
         <div className="relative m-0 w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
           <Image loader={()=>book?.volumeInfo?.imageLinks?.thumbnail} src={book?.volumeInfo?.imageLinks?.thumbnail} alt={book?.volumeInfo?.title} width={1000} height={1000}/>
@@ -76,12 +75,12 @@ export default function BookCard({book}:IBook) {
             </h4>
           </div>
           <div className="flex flex-row justify-between align-bottom ">
-            <div className="flex flex-row justify-between align-middle">
+            <div className="flex flex-row justify-between align-middle mt-1">
               <button onClick={addToCartHandler}>
-                <p className="cursor-pointer group  transition-all rounded-full -ms-1 p-1 hover:bg-pink-500/40 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                {bookData?.saleInfo?.retailPrice?.amount?<p className="cursor-pointer group  transition-all rounded-full -ms-1 p-1 hover:bg-pink-500/40 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-8 w-8 "
+                    className="h-7 w-7 "
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="black"
@@ -93,24 +92,28 @@ export default function BookCard({book}:IBook) {
                       d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                     />
                   </svg>
-                </p>
+                </p>:<p className="cursor-pointer group  transition-all rounded-full -ms-1 p-1 hover:bg-pink-500/90 hover:text-white active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                  Out of stock
+                  </p>}
               </button>
-              <p className="my-auto text-black text-sm font-medium"> {bookData?.saleInfo?.retailPrice?.amount} {bookData?.saleInfo?.retailPrice?.currencyCode==="TRY"&&"₺"}</p>
+              <p className="my-auto text-black text-sm font-medium  ms-1"> {bookData?.saleInfo?.retailPrice?.amount} {bookData?.saleInfo?.retailPrice?.currencyCode==="TRY"&&"₺"}</p>
             </div>
             <div>
-              <Link href={"/bookdetail"}>
-                <span className="inline-block my-auto" >
+              <Link href={{pathname:"/bookdetail",query:{
+                id:book.id
+              }}}>
+                <span className="inline-block m-auto mt-1" >
                   <button
-                    className="flex select-none items-center ms-auto gap-2 mt-2 rounded-lg py-1 px-2 text-center font-sans text-xs font-bold uppercase  transition-all hover:bg-pink-500/40 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    className="flex select-none items-center justify-center align-middle gap-2 mt-2 bg-pink-500  h-6 w-6 rounded-full text-center font-sans text-xs font-bold uppercase  transition-all hover:bg-pink-500/40 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                     type="button"
                   >
-                    Learn More
+                    
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       strokeWidth="2"
-                      stroke="currentColor"
+                      stroke="white"
                       aria-hidden="true"
                       className="h-4 w-4"
                     >
@@ -127,7 +130,7 @@ export default function BookCard({book}:IBook) {
           </div>
 
         </div>
-        <ToastContainer/>
+
       </div>
     </div>
   );

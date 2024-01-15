@@ -19,7 +19,15 @@ const cartSlice = createSlice({
     } as CartState,
     reducers: {
         addToCart(state, action: PayloadAction<Item>) {
-            state.items.push(action.payload);
+            const existingItem = state.items.find(item => item.id === action.payload.id);
+            // Öğe listede yoksa ekle
+            if (!existingItem) {
+                state.items.push(action.payload);
+            } 
+            // Öğe listede varsa miktarını arttır
+            else {
+                existingItem.quantity += action.payload.quantity;
+            }
         },
         removeFromCart(state, action: PayloadAction<{ id: string }>) {
             state.items = state.items.filter((item) => item.id !== action.payload.id);
